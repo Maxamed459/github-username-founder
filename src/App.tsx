@@ -1,9 +1,18 @@
 import React, { useState } from "react";
 import "./App.css";
 
+interface githubUser {
+  avatar_url: string;
+  login: string;
+  bio: string;
+  location: string;
+  followers: number;
+  following: number;
+}
+
 const App = () => {
   const [username, setUsername] = useState<string>("");
-  const [user, setUser] = useState<string>("");
+  const [user, setUser] = useState<githubUser | null>(null);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value);
@@ -36,7 +45,7 @@ const App = () => {
           <div className="user-info">
             <img
               src={user.avatar_url}
-              alt={`${user.name}'s avatar`}
+              alt={`${user.login}'s avatar`}
               className="img"
             />
             <div>
